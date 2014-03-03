@@ -132,6 +132,9 @@
 					<results_values>
 						<table>webforms_results_values</table>
 					</results_values>
+					<store>
+						<table>webforms_store</table>
+					</store>
 
 				</entities>
 			</webforms_mysql4>
