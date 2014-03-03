@@ -5,4 +5,15 @@
 			<version>0.1.0</version>
 		</Wsu_WebForms>
 	</modules>
+	<frontend>
+		<routers>
+			<webforms>
+				<use>standard</use>
+				<args>
+					<module>Wsu_WebForms</module>
+					<frontName>webforms</frontName>
+				</args>
+			</webforms>
+		</routers>
+	</frontend>
 </config>
