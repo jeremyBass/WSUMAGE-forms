@@ -77,5 +77,35 @@
 				</children>
 			</cms>
 		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<cms>
+							<children>
+								<webforms>
+									<title>Forms Module</title>
+									<sort_order>10</sort_order>
+								</webforms>
+							</children>
+						</cms>
+						<system>
+							<children>
+								<config>
+									<children>
+										<webforms>
+											<title>Forms Settings Configuration</title>
+										</webforms>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
 	</adminhtml>
 </config>
