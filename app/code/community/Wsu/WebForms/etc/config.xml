@@ -39,4 +39,15 @@
 			</translate>
 		</routers>
 	</frontend>
+	<admin>
+		<routers>
+			<webforms>
+				<use>admin</use>
+				<args>
+					<module>Wsu_WebForms</module>
+					<frontName>webforms</frontName>
+				</args>
+			</webforms>
+		</routers>
+	</admin>
 </config>
