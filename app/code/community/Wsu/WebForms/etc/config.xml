@@ -60,5 +60,15 @@
 				</Wsu_WebForms>
 			</modules>
 		</translate>
+		<menu>
+			<cms translate="title" module="cms">
+				<children>
+					<webforms module="webforms">
+						<title>Forms</title>
+						<sort_order>77</sort_order>
+					</webforms>
+				</children>
+			</cms>
+		</menu>
 	</adminhtml>
 </config>
