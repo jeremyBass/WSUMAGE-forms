@@ -126,6 +126,9 @@
 					<fieldsets>
 						<table>webforms_fieldsets</table>
 					</fieldsets>
+					<results>
+						<table>webforms_results</table>
+					</results>
 
 				</entities>
 			</webforms_mysql4>
