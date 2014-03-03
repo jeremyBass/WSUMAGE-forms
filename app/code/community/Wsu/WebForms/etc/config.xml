@@ -147,5 +147,25 @@
 				</entities>
 			</webforms_mysql4>
 		</models>
+		<resources>
+			<webforms_setup>
+				<setup>
+					<module>Wsu_WebForms</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</webforms_setup>
+			<webforms_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</webforms_write>
+			<webforms_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</webforms_read>
+		</resources>
 	</global>
 </config>
