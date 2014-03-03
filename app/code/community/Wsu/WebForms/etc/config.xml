@@ -120,6 +120,10 @@
 					<webforms>
 						<table>webforms</table>
 					</webforms>
+					<fields>
+						<table>webforms_fields</table>
+					</fields>
+
 				</entities>
 			</webforms_mysql4>
 		</models>
