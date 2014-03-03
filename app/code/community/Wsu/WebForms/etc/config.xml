@@ -108,4 +108,12 @@
 			</resources>
 		</acl>
 	</adminhtml>
+	<global>
+		<models>
+			<webforms>
+				<class>Wsu_WebForms_Model</class>
+				<resourceModel>webforms_mysql4</resourceModel>
+			</webforms>
+		</models>
+	</global>
 </config>
