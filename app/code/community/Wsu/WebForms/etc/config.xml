@@ -129,6 +129,9 @@
 					<results>
 						<table>webforms_results</table>
 					</results>
+					<results_values>
+						<table>webforms_results_values</table>
+					</results_values>
 
 				</entities>
 			</webforms_mysql4>
