@@ -51,5 +51,14 @@
 		</routers>
 	</admin>
 	<adminhtml>
+		<translate>
+			<modules>
+				<Wsu_WebForms>
+					<files>
+						<default>Wsu_WebForms.csv</default>
+					</files>
+				</Wsu_WebForms>
+			</modules>
+		</translate>
 	</adminhtml>
 </config>
