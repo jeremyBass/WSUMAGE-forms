@@ -51,6 +51,13 @@
 		</routers>
 	</admin>
 	<adminhtml>
+		<layout>
+			<updates>
+				<webforms>
+					<file>webforms.xml</file>
+				</webforms>
+			</updates>
+		</layout>
 		<translate>
 			<modules>
 				<Wsu_WebForms>
