@@ -50,4 +50,6 @@
 			</webforms>
 		</routers>
 	</admin>
+	<adminhtml>
+	</adminhtml>
 </config>
