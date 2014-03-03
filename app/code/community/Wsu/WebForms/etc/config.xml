@@ -114,6 +114,14 @@
 				<class>Wsu_WebForms_Model</class>
 				<resourceModel>webforms_mysql4</resourceModel>
 			</webforms>
+			<webforms_mysql4>
+				<class>Wsu_WebForms_Model_Mysql4</class>
+				<entities>
+					<webforms>
+						<table>webforms</table>
+					</webforms>
+				</entities>
+			</webforms_mysql4>
 		</models>
 	</global>
 </config>
