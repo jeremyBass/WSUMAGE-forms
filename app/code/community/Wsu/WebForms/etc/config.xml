@@ -141,7 +141,9 @@
 					<quickresponse>
 						<table>webforms_quickresponse</table>
 					</quickresponse>
-
+					<logic>
+						<table>webforms_logic</table>
+					</logic>
 				</entities>
 			</webforms_mysql4>
 		</models>
