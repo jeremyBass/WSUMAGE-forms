@@ -138,6 +138,9 @@
 					<message>
 						<table>webforms_message</table>
 					</message>
+					<quickresponse>
+						<table>webforms_quickresponse</table>
+					</quickresponse>
 
 				</entities>
 			</webforms_mysql4>
