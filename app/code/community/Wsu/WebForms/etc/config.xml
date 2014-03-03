@@ -135,6 +135,9 @@
 					<store>
 						<table>webforms_store</table>
 					</store>
+					<message>
+						<table>webforms_message</table>
+					</message>
 
 				</entities>
 			</webforms_mysql4>
