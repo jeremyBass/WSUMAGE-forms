@@ -21,6 +21,13 @@
 					</modules>
 				</args>
 			</contacts>
+			<layout>
+				<updates>
+					<webforms>
+						<file>webforms.xml</file>
+					</webforms>
+				</updates>
+			</layout>
 		</routers>
 	</frontend>
 </config>
