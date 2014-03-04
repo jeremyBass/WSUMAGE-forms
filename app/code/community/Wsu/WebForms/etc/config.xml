@@ -190,5 +190,10 @@
 				</connection>
 			</webforms_read>
 		</resources>
+		<blocks>
+			<webforms>
+				<class>Wsu_WebForms_Block</class>
+			</webforms>
+		</blocks>
 	</global>
 </config>
