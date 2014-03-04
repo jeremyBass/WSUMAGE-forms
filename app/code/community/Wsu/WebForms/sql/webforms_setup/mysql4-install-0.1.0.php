@@ -123,6 +123,12 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/results_values')}` (
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/message')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `result_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT 'Admin User ID',
+  `message` longtext NOT NULL,
+  `author` varchar(100) NOT NULL COMMENT 'Author Name',
+  `is_customer_emailed` tinyint(4) NOT NULL,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 ");
