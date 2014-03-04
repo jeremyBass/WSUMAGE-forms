@@ -1,7 +1,5 @@
 <?php
 class Wsu_WebForms_Helper_Data extends Mage_Core_Helper_Abstract {
-	const DKEY = 'WF1DM';
-	const SKEY = 'WFSRV';
 	public function getIp() {
 		$ip = Mage::helper('core')->isModuleEnabled('Wsu_NetworkSecurities') ? Mage::helper('wsu_networksecurities')->get_ip_address() : $_SERVER['REMOTE_ADDR'];
 		return $ip;
