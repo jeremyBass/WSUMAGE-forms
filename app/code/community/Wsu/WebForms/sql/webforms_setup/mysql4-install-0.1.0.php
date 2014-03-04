@@ -98,6 +98,12 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/fieldsets')}` (
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/results')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `webform_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_ip` VARBINARY(16) NOT NULL
+  `created_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ");
