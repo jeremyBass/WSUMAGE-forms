@@ -1,0 +1,214 @@
+<?php
+
+
+
+$webforms_id = $this->getWebform()->getId();
+
+$webforms_submit = $this->getLayout()->createBlock(
+	'core/template',
+	'webform_' . $webforms_id . '_submit_script',
+	array(
+		'webform' => $this->getWebform(),
+		'ajax' => $this->isAjax(),
+		'template' => 'webforms/scripts/submit.phtml',
+	) )->toHtml();
+
+$webforms_logic = $this->getLayout()->createBlock(
+	'core/template',
+	'webform_' . $webforms_id . '_logic',
+	array(
+		'webform' => $this->getWebform(),
+		'template' => 'webforms/scripts/logic.phtml',
+	) )->toHtml();
+
+$webforms_additional="";
+if (Mage::getStoreConfig('wsu_networksecurities/honeypot/usehoneypots')) {
+	$webforms_additional .= $this->getLayout()->createBlock(
+		'wsu_networksecurities/honeypot',
+		'networksecurities.honeypot',
+		array(
+			'webform' => $this->getWebform(),
+			'template' => 'wsu/networksecurities/honeypot.phtml',
+		) )->toHtml();
+}
+
+$webforms_captcha = "";  
+if (Mage::registry('use_captcha')) {
+	$webforms_captcha .= '<div class="fieldset">
+		<h2 class="legend">Captcha</h2>
+		<ul class="form-list">
+			<li class="fields">
+				<div class="field">
+					'.$this->getCaptcha()->getHTML().'
+				</div>
+			</li>
+		</ul>
+	</div>';
+}
+
+
+// in case redirect fails
+if (Mage::registry('redirect_url')) {
+    ?>
+    <meta http-equiv="refresh" content="0;url=<?php echo Mage::registry('redirect_url') ?>">
+    <script type="text/javascript">
+        window.location = '<?php echo Mage::registry('redirect_url')?>';
+    </script>
+<?php
+}
+
+// get temporary data
+$tmpData = Mage::getSingleton('core/session')->getData('webform_result_tmp_' . $webforms_id);
+$tmpResult = new Varien_Object();
+if (!empty($tmpData['field']) && is_array($tmpData['field'])) {
+    foreach ($tmpData['field'] as $field_id => $value) {
+        $tmpResult->setData('field_' . $field_id, $value);
+    }
+}
+
+if ($this->getWebform()->getIsActive() == Wsu_WebForms_Model_Webforms::STATUS_DISABLED || !$this->isDirectAvailable()) {
+    echo $this->getNotAvailableMessage();
+} else {
+
+    if (Mage::registry('show_form_name')) { ?>
+		<div class="page-title">
+            <h1><?php echo $this->getWebform()->getName(); ?></h1>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->isAjax()) { ?>
+        <div id="webform_<?=$webforms_id;?>_success_text" class="std webforms-success-text" style="display:none"></div>
+    <?php }
+	 
+    if (Mage::registry('show_success')) { ?>
+       <div class="std webforms-success-text">
+            <?php echo $this->getWebform()->getSuccessText() ?>
+        </div>
+   <?php } else { ?>
+        <div id="webform_<?=$webforms_id;?>_form">
+            <?php if ($this->getWebform()->getDescription()) { ?>
+                <div class="std">
+                    <?php echo $this->getWebform()->getDescription(); ?>
+                </div>
+            <?php } 
+			if ($this->isAjax()) { ?>
+                <iframe id="webform_<?=$webforms_id;?>_iframe" name="webform_<?=$webforms_id;?>_iframe" style="width:0;height:0;border:0;position:absolute"></iframe>
+            <?php } 
+
+            ?><form action="<?php echo $this->getFormAction() ?>" method="post" name="webform_<?=$webforms_id;?>" id="webform_<?=$webforms_id;?>" enctype="<?php echo $this->getEnctype() ?>" class="webforms-<?php echo $this->getWebform()->getCode() ?>" <?php if ($this->isAjax()) { ?>target="webform_<?=$webforms_id;?>_iframe"<?php } ?>>
+
+                <input type="hidden" name="submitWebform_<?=$webforms_id;?>" value="1"/>
+                <input type="hidden" name="webform_id" value="<?=$webforms_id;?>"/>
+
+                <?php if (is_array($this->getData('hidden'))) : 
+                     foreach ($this->getData('hidden') as $key => $value) : 
+                        ?><input type="hidden" name="<?=$key;?>" value="<?=$value;?>"/><?php
+					endforeach;
+				endif;
+				
+				if (count($this->getWebform()->_getHidden())) {
+                    foreach ($this->getWebform()->_getHidden() as $field) {
+                        echo $field->toHtml();
+                    }
+                }
+                foreach ($this->getWebform()->_getFieldsToFieldsets() as $fieldset_id => $fieldset) {
+                    ?><div id="fieldset_<?=$fieldset_id;?>" class="fieldset fieldset-<?=$fieldset_id;?>"
+                        <?php if ($fieldset['logic_visibility'] == Wsu_WebForms_Model_Logic::VISIBILITY_HIDDEN) echo 'style="display:none"'; ?>>
+
+                        <?php if (!empty($fieldset['name'])) { ?>
+                            <h2 class="legend"><?php echo $fieldset['name'] ?></h2>
+                        <?php } 
+
+                        ?><ul class="form-list"><?php
+                            
+                            $k = 0;
+                            $j = 0;
+                            $prev = false;
+                            $fields_count = count($fieldset['fields']);
+                            foreach ($fieldset['fields'] as $field) {
+
+                                // set temporary value
+                                $field->setData('result', $tmpResult);
+
+                                $size_class = "fields";
+                                $field_class = "field";
+                                if ($field->getSize() == 'wide') {
+                                    $size_class = "wide";
+                                    $field_class = "";
+                                }
+
+                                if ($j % 2 == 0 || $field->getSize() == 'wide' || $prev->getSize() == 'wide') {
+                                    $j = 0; 
+									if ($k > 1) { ?></li><?php } 
+                                    ?><li <?php if ($size_class == 'wide') { ?>id="field_<?php echo $field->getId() ?>_row" <?php } ?> class="<?php echo $size_class ?> <?php if ($size_class == 'wide') { ?>webforms-fields-row-<?php echo $field->getId() ?><?php } ?>"
+                                    <?php if ($size_class == 'wide' && $field->getData('logic_visibility') == Wsu_WebForms_Model_Logic::VISIBILITY_HIDDEN) echo 'style="display:none"'; ?>>
+                                <?php } ?>
+                                <div id="field_<?php echo $field->getId() ?>" class="<?php echo $field_class ?> webforms-fields-<?php echo $field->getId() ?><?php if ($field->getCode()) { ?> webforms-fields-<?php echo $field->getCode();
+								}?>"<?php if ($field->getData('logic_visibility') == Wsu_WebForms_Model_Logic::VISIBILITY_HIDDEN) echo 'style="display:none"'; ?>><?php
+
+                                     if ($field->getType() != 'html' && $field->getType() != 'subscribe') { 
+                                        ?><label for="field_<?php echo $field->getId() ?>"<?php
+                                                if ($field->getRequired()) { ?> class="required"<?php } ?>><?php
+                                             if ($field->getRequired()) { ?>
+                                                <em>*</em>
+                                            <?php }  
+											echo $field->getName();
+											$tooltip = $field->getTooltip(); 
+											if($tooltip){
+												echo $this->getLayout()->createBlock(
+													'core/template',
+													'field' . $field->getId() . '_tooltip',
+													array(
+														'title' => $field->getName(),
+														'tooltip' => $tooltip,
+														'template' => 'webforms/scripts/tooltip.phtml',
+													))->toHtml();
+											}
+                                        ?></label> <?php
+                                    } 
+
+                                    ?><div class="input-box"><?php
+                                         echo $field->toHtml();
+										 if ($field->getComment()) { 
+                                            ?><p class="webforms-fields-comment">
+                                                <?php echo nl2br($field->getComment()) ?>
+                                            </p><?php
+                                         }
+                                    ?></div>
+                                </div>
+                                <?php if ($k == $fields_count - 1) { 
+                                    ?></li><?php
+                                 } ?>
+                                <?php
+                                $k++;
+                                $j++;
+                                $prev = $field;
+                            }?>
+                        </ul>
+                    </div>
+                <?php
+                } // foreach 'fields_to_fieldsets'
+                ?>
+<!-- END OF FORM -->
+                <?=$webforms_captcha; ?>
+				<?=$webforms_additional;?>
+                <div class="buttons-set">
+                    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+                    <button type="button" class="button" id="webform_<?=$webforms_id;?>_submit_button" onclick="webform_<?=$webforms_id;?>_submit()" title="<?php echo $this->__('submit') ?>">
+						<span>
+							<span><?php echo $this->__($this->getWebform()->getSubmitButtonText()) ?></span>
+						</span>
+                    </button>
+					<span class="please-wait" id="webform_<?=$webforms_id;?>_sending_data" style="display:none;">
+						<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Sending...') ?>" title="<?php echo $this->__('Sending...') ?>" class="v-middle"/>
+						<span id="webform_<?=$webforms_id;?>_progress_text"><?php echo $this->__('Sending...') ?></span>
+					</span>
+                </div>
+            </form>
+        </div>
+        <?=$webforms_submit;?>
+		<?=$webforms_logic;?>
+    <?php
+    } // if(show_success)
+} // is active
+?>

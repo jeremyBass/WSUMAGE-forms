@@ -1,0 +1,16 @@
+<div class='webforms-calendar'>
+	<input type='text' name='<?php echo $this->getFieldName()?>' id='<?php echo $this->getFieldId()?>' class='<?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' value='<?php echo $this->getCustomerValue()?>' readonly='readonly'/>
+</div>
+
+<script type='text/javascript'>
+
+Calendar.setup({
+	inputField: '<?=$this->getFieldId();?>',
+	ifFormat: '<?=str_replace("'","\'",$this->getField()->getDateStrFormat());?>',
+	showsTime: <?=$this->getShowTime();?>,
+	button: '<?=$this->getFieldId();?>',
+	align: 'Bl',
+	singleClick: true
+});
+
+</script>
