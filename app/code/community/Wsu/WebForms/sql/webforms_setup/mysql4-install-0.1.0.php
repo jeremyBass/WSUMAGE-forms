@@ -41,6 +41,13 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/fieldsets')}` (
 ");
 
 
+$installer->run("
+CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/results')}` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+");
+
 
 $installer->endSetup();
 ?>
