@@ -33,6 +33,14 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/fields')}` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ");
 
+$installer->run("
+CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/fieldsets')}` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+");
+
+
 
 $installer->endSetup();
 ?>
