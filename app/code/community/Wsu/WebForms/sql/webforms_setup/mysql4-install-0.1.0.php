@@ -159,6 +159,15 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/store')}` (
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/logic')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `field_id` int(11) NOT NULL,
+  `logic_condition` varchar(20) NOT NULL DEFAULT 'equal',
+  `action` varchar(20) NOT NULL DEFAULT 'show',
+  `aggregation` varchar(20) NOT NULL DEFAULT 'any',
+  `value_serialized` text NOT NULL,
+  `target_serialized` text NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `created_time` datetime NOT NULL,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ");
