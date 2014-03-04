@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/webforms')}` (
   `success_text` text NOT NULL,
   `registered_only` tinyint(1) NOT NULL,
   `send_email` tinyint(1) NOT NULL,
-  `add_header` tinyint(1) NOT NULL DEFAULT '1'
+  `add_header` tinyint(1) NOT NULL DEFAULT '1',
   `duplicate_email` tinyint(1) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` VARCHAR( 255 ) NOT NULL,
   `email_reply_to` TEXT NOT NULL,
   `email_template_id` int( 11 ) NOT NULL,
   `email_customer_template_id` int( 11 ) NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/results')}` (
   `webform_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `customer_ip` VARBINARY(16) NOT NULL
+  `customer_ip` VARBINARY(16) NOT NULL,
   `created_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
