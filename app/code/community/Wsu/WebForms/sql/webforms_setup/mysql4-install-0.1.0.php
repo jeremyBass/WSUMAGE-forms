@@ -54,6 +54,18 @@ $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/fields')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `webform_id` int(11) NOT NULL,
+  `fieldset_id` int(11) NOT NULL,
+  `name` TEXT NOT NULL,
+  `comment` TEXT NOT NULL,
+  `result_label` TEXT NOT NULL,
+  `result_display` varchar( 10 ) NOT NULL DEFAULT 'on',
+  `code` VARCHAR( 255 ) NOT NULL,
+  `position` int(11) NOT NULL,
+  `required` tinyint(1) NOT NULL,
+  `created_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `hint` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ");
