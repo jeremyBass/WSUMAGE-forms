@@ -71,6 +71,16 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/quickresponse')}` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 ");
 
+$installer->run("
+CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/store')}` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `entity_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `OBJECT` (`store_id`,`entity_type`,`entity_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+");
+
+
 
 $installer->endSetup();
 ?>
