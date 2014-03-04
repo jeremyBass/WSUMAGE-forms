@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<webforms_tab translate="label" module="webforms">
+			<label>Forms</label>
+			<sort_order>99999</sort_order>
+		</webforms_tab>
+	</tabs>
+	<sections>
+
+	</sections>
+</config>
