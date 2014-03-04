@@ -136,6 +136,10 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/message')}` (
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/quickresponse')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `message` longtext NOT NULL,
+  `created_time` datetime NOT NULL,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 ");
