@@ -195,5 +195,10 @@
 				<class>Wsu_WebForms_Block</class>
 			</webforms>
 		</blocks>
+		<helpers>
+			<webforms>
+				<class>Wsu_WebForms_Helper</class>
+			</webforms>
+		</helpers>
 	</global>
 </config>
