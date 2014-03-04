@@ -21,6 +21,31 @@ $installer->getConnection()->dropTable($this->getTable('webforms/logic'));
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/webforms')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `code` VARCHAR( 255 ) NOT NULL,
+  `redirect_url` TEXT NOT NULL,
+  `description` text NOT NULL,
+  `success_text` text NOT NULL,
+  `registered_only` tinyint(1) NOT NULL,
+  `send_email` tinyint(1) NOT NULL,
+  `add_header` tinyint(1) NOT NULL DEFAULT '1'
+  `duplicate_email` tinyint(1) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `email_reply_to` TEXT NOT NULL,
+  `email_template_id` int( 11 ) NOT NULL,
+  `email_customer_template_id` int( 11 ) NOT NULL,
+  `email_reply_template_id` int( 11 ) NOT NULL DEFAULT '0',
+  `email_smtpvalidation` TINYINT( 1 ) NOT NULL,
+  `survey` tinyint(1) NOT NULL,
+  `approve` TINYINT( 1 ) NOT NULL,
+  `captcha_mode` varchar( 40 ) NOT NULL,
+  `files_upload_limit` int( 11 ) NOT NULL DEFAULT '0',
+  `images_upload_limit` int( 11 ) NOT NULL DEFAULT '0',
+  `created_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `menu`  tinyint(1) NOT NULL DEFAULT '1',
+  `submit_button_text` varchar( 255 ),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ");
