@@ -16,8 +16,6 @@ $installer->getConnection()->dropTable($this->getTable('webforms/quickresponse')
 $installer->getConnection()->dropTable($this->getTable('webforms/store'));
 $installer->getConnection()->dropTable($this->getTable('webforms/logic'));
 
-
-
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/webforms')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
