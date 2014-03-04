@@ -204,4 +204,29 @@
 
 		</events>
 	</global>
+	<default>
+		<webforms>
+			<general>
+				<ajax>1</ajax>
+				<preview_template>
+					<![CDATA[webforms/default.phtml]]>
+				</preview_template>
+			</general>
+			<results>
+				<fieldname_display_limit>25</fieldname_display_limit>
+			</results>
+			<files>
+				<load_jquery>1</load_jquery>
+			</files>
+			<images>
+				<cache>1</cache>
+				<upload_limit>300</upload_limit>
+				<grid_thumbnail_width>100</grid_thumbnail_width>
+				<email_thumbnail_width>200</email_thumbnail_width>
+			</images>
+			<honeypot>
+				<enable>1</enable>
+			</honeypot>
+		</webforms>
+	</default>
 </config>
