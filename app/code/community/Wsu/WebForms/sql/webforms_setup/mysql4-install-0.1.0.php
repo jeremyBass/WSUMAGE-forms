@@ -112,6 +112,9 @@ $installer->run("
 CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/results_values')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `result_id` int(11) NOT NULL,
+  `field_id` int(11) NOT NULL,
+  `value` text  NOT NULL,
+  `key` varchar( 10 ) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `result_id` (`result_id`,`field_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
