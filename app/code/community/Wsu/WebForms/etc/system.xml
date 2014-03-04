@@ -7,6 +7,115 @@
 		</webforms_tab>
 	</tabs>
 	<sections>
+		<webforms translate="label">
+			<label>Forms Settings</label>
+			<tab>webforms_tab</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general translate="label comment">
+					<comment></comment>
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
 
+					</fields>
+				</general>
+				<email translate="label comment">
+					<comment></comment>
+					<label>E-mail</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</email>
+				<message translate="label comment">
+					<label>Messages</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>12</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</message>
+				<honeypot>
+					<comment>
+						<![CDATA[Honeypot controll]]>
+					</comment>
+					<label>Honeypot Captcha</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>15</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</honeypot>
+				<results translate="label comment">
+					<comment></comment>
+					<label>Results</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</results>
+				<files translate="label comment">
+					<comment></comment>
+					<label>Files</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>22</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</files>
+				<images translate="label comment">
+					<comment></comment>
+					<label>Images</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>25</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</images>
+				<contacts translate="label comment">
+					<comment>
+						<![CDATA[Replace default Magento contacts page a custom form]]>
+					</comment>
+					<label>Contacts</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>110</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+					</fields>
+				</contacts>
+			</groups>
+		</webforms>
 	</sections>
 </config>
