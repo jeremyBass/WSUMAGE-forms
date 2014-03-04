@@ -200,5 +200,8 @@
 				<class>Wsu_WebForms_Helper</class>
 			</webforms>
 		</helpers>
+		<events>
+
+		</events>
 	</global>
 </config>
