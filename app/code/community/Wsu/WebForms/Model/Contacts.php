@@ -7,6 +7,7 @@ class Wsu_WebForms_Model_Contacts extends Mage_Core_Model_Abstract {
 	public function toOptionArray() {
 		$forms = Mage::getModel('webforms/webforms')->getCollection();
 		$forms->getSelect()->order('name asc');
+		$options=array();
 		foreach ($forms as $form) {
 			$options[] = array(
 				'label' => $form->getName(),
