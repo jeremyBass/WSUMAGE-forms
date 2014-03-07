@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('webforms/results')}` (
   `webform_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `customer_ip` VARBINARY(16) NOT NULL,
+  `customer_ip` varchar(255) NOT NULL DEFAULT '0.0.0.0',
   `created_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
