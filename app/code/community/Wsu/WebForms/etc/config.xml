@@ -38,6 +38,37 @@
 				</modules>
 			</translate>
 		</routers>
+		<events>
+			<controller_action_predispatch_checkout_onepage_review>
+				<observers>
+					<load_form>
+						<class>webforms/observer</class>
+						<method>applyInlineForm</method>
+					</load_form>
+				</observers>
+			</controller_action_predispatch_checkout_onepage_review>
+			<controller_action_predispatch_checkout_onepage_index>
+				<observers>
+					<load_form>
+						<class>webforms/observer</class>
+						<method>applyInlineForm</method>
+					</load_form>
+				</observers>
+			</controller_action_predispatch_checkout_onepage_index>
+			
+			<controller_action_predispatch_opc_index_index>
+				<observers>
+					<load_form>
+						<class>webforms/observer</class>
+						<method>applyInlineForm</method>
+					</load_form>
+				</observers>
+			</controller_action_predispatch_opc_index_index>
+			
+			
+			
+			
+		</events>
 	</frontend>
 	<admin>
 		<routers>
