@@ -11,10 +11,6 @@ class Wsu_WebForms_Model_Webforms_Template extends Mage_Core_Model_Abstract {
 				'label' => Mage::helper('webforms')->__('Default')
 			),
 			array(
-				'value' => 'webforms/legacy.phtml',
-				'label' => Mage::helper('webforms')->__('Legacy (Magento 1.3 and earlier)')
-			),
-			array(
 				'value' => 'webforms/ultimento.phtml',
 				'label' => Mage::helper('webforms')->__('Ultimento (theme matching template)')
 			),

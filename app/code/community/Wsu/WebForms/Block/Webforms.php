@@ -88,8 +88,7 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 			}
 			//redirect after successful submission
 			$url = Mage::helper('core/url')->getCurrentUrl();
-			if (!$success && $this->getTemplate() != 'webforms/legacy.phtml')
-				Mage::app()->getFrontController()->getResponse()->setRedirect($url);
+			Mage::app()->getFrontController()->getResponse()->setRedirect($url);
 			if ($webform->getRedirectUrl()) {
 				if (strstr($webform->getRedirectUrl(), '://'))
 					$url = $webform->getRedirectUrl();
@@ -129,15 +128,7 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 		if (empty($data['webform_id'])) {
 			$data['webform_id'] = Mage::registry('webform_id');
 		}
-		if (empty($data['webform_id'])) {
-			$data['webform_id'] = Mage::getStoreConfig('webforms/contacts/webform');
-		}
-		/*
-			get id from product
-		*/
-		if (empty($data['webform_id'])) {
-			$data['webform_id'] = Mage::getStoreConfig('webforms/checkout/webform');
-		}
+		var_dump($data);print('getFormData');
 		return $data;
 	}
 	protected function _prepareLayout() {

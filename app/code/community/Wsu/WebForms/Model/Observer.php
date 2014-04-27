@@ -1,12 +1,6 @@
 <?php
 class Wsu_WebForms_Model_Observer {
 	
-	public function applyInlineForm($observer) {
-		print('here');die();
-	
-	
-	}
-	
 	public function addAssets($observer) {
 		$layout = $observer->getLayout();
 		$update = $observer->getLayout()->getUpdate();

@@ -8,14 +8,4 @@
 			<block type="webforms/webforms" name="webforms" template="webforms/default.phtml"/>
 		</reference>
 	</webforms_index_index>
-	
-	<checkout_onepage_review>
-		<reference name="root">
-			<block type="webforms/webforms" name="webforms" after="checkout.progress.wrapper" template="webforms/default.phtml">
-				<action method="webforms"><id>webforms</id></action>
-			</block>		
-		</reference>		
-	</checkout_onepage_review>
-	
-	
 </layout>

@@ -1,9 +1,7 @@
 <?php
 
-
-
 $webforms_id = $this->getWebform()->getId();
-
+var_dump($this->getWebform());
 $webforms_submit = $this->getLayout()->createBlock(
 	'core/template',
 	'webform_' . $webforms_id . '_submit_script',
@@ -211,4 +209,5 @@ if ($this->getWebform()->getIsActive() == Wsu_WebForms_Model_Webforms::STATUS_DI
     <?php
     } // if(show_success)
 } // is active
+/**/
 ?>
