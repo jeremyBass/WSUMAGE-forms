@@ -127,7 +127,16 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 			$data['webform_id'] = $this->getData('webform_id');
 		}
 		if (empty($data['webform_id'])) {
+			$data['webform_id'] = Mage::registry('webform_id');
+		}
+		if (empty($data['webform_id'])) {
 			$data['webform_id'] = Mage::getStoreConfig('webforms/contacts/webform');
+		}
+		/*
+			get id from product
+		*/
+		if (empty($data['webform_id'])) {
+			$data['webform_id'] = Mage::getStoreConfig('webforms/checkout/webform');
 		}
 		return $data;
 	}
