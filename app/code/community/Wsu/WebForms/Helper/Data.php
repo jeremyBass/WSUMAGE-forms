@@ -2,11 +2,11 @@
 class Wsu_WebForms_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	public function getIp() {
-		$ip = Mage::helper('core')->isModuleEnabled('Wsu_NetworkSecurities') ? Mage::helper('wsu_networksecurities')->get_ip_address() : $_SERVER['REMOTE_ADDR'];
+		$ip = Mage::helper('core')->isModuleEnabled('Wsu_Networksecurities') ? Mage::helper('wsu_networksecurities')->get_ip_address() : $_SERVER['REMOTE_ADDR'];
 		return $ip;
 	}
 	public function captchaAvailable() {
-		if (Mage::helper('core')->isModuleEnabled('Wsu_NetworkSecurities')){
+		if (Mage::helper('core')->isModuleEnabled('Wsu_Networksecurities')){
 			return Mage::helper('wsu_networksecurities')->captchaAvailable();
 		}
 		return false;
