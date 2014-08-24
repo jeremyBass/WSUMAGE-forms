@@ -12,8 +12,9 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 		if (Mage::registry('webforms_preview')) {
 			$this->setTemplate(Mage::getStoreConfig('webforms/general/preview_template'));
 		}
-		if (!Mage::registry('webforms_preview'))
+		if (!Mage::registry('webforms_preview')){
 			$this->initForm();
+		}
 		$html = parent::_toHtml();
 		return $html;
 	}
@@ -27,15 +28,17 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 		//proccess texts
 		$webform->setDescription(Mage::helper('cms')->getPageTemplateProcessor()->filter($webform->getDescription()));
 		$webform->setSuccessText(Mage::helper('cms')->getPageTemplateProcessor()->filter($webform->getSuccessText()));
-		if (!Mage::registry('webform'))
+		if (!Mage::registry('webform')){
 			Mage::register('webform', $webform);
-		if (intval($this->getData('results')) == 1)
+		}
+		if (intval($this->getData('results')) == 1){
 			$this->getResults();
+		}
 		if ($webform->getSurvey()) {
 			$collection = Mage::getModel('webforms/results')->getCollection();
-			if (Mage::helper('customer')->isLoggedIn())
+			if (Mage::helper('customer')->isLoggedIn()){
 				$collection->addFilter('webform_id', $data['webform_id'])->addFilter('customer_id', Mage::getSingleton('customer/session')->getCustomerId());
-			else {
+			}else {
 				$session_validator = Mage::getSingleton('customer/session')->getData('_session_validator_data');
 				$collection->addFilter('customer_ip', ip2long($session_validator['remote_addr']));
 			}
@@ -70,8 +73,9 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 			$status    = 301;
 			if (Mage::getStoreConfig('webforms/general/login_redirect')) {
 				$login_url = $this->getUrl(Mage::getStoreConfig('webforms/general/login_redirect'));
-				if (strstr(Mage::getStoreConfig('webforms/general/login_redirect'), '://'))
+				if (strstr(Mage::getStoreConfig('webforms/general/login_redirect'), '://')){
 					$login_url = Mage::getStoreConfig('webforms/general/login_redirect');
+				}
 			}
 			Mage::app()->getFrontController()->getResponse()->setRedirect($login_url, $status);
 		}
@@ -90,14 +94,16 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 			$url = Mage::helper('core/url')->getCurrentUrl();
 			Mage::app()->getFrontController()->getResponse()->setRedirect($url);
 			if ($webform->getRedirectUrl()) {
-				if (strstr($webform->getRedirectUrl(), '://'))
+				if (strstr($webform->getRedirectUrl(), '://')){
 					$url = $webform->getRedirectUrl();
-				else
+				}else{
 					$url = $this->getUrl($webform->getRedirectUrl());
+				}
 			}
 			Mage::register('redirect_url', $url);
-			if ($success)
+			if ($success){
 				Mage::app()->getFrontController()->getResponse()->setRedirect($url);
+			}
 		}
 		return $this;
 	}
@@ -113,8 +119,9 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 	}
 	public function getNotAvailableMessage() {
 		$message = $this->__('Web-form is not active.');
-		if (Mage::registry('webform')->getIsActive() && !$this->isDirectAvailable())
+		if (Mage::registry('webform')->getIsActive() && !$this->isDirectAvailable()){
 			$message = $this->__('Web-form is not available for direct access.');
+		}
 		return $message;
 	}
 	public function getFormData() {
@@ -128,7 +135,7 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 		if (empty($data['webform_id'])) {
 			$data['webform_id'] = Mage::registry('webform_id');
 		}
-		var_dump($data);print('getFormData');
+		//var_dump($data);print('getFormData');
 		return $data;
 	}
 	protected function _prepareLayout() {
@@ -136,8 +143,9 @@ class Wsu_WebForms_Block_Webforms extends Mage_Core_Block_Template {
 		parent::_prepareLayout();
 		if (Mage::registry('webforms_preview')) {
 			$this->initForm();
-			if ($this->getLayout()->getBlock('head'))
+			if ($this->getLayout()->getBlock('head')){
 				$this->getLayout()->getBlock('head')->setTitle($this->getWebform()->getName());
+			}
 		}
 	}
 	public function getCaptcha() {
