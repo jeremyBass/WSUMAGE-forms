@@ -141,7 +141,7 @@ class Wsu_WebForms_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 	public function editorConfig(){
 		return "function toggleEditor() {
-					if (tinyMCE.getInstanceById('page_content') == null) {
+					if (tinyMCE.getInstanceById('page_content') === null) {
 						tinyMCE.execCommand('mceAddControl', false, 'content');
 					} else {
 						tinyMCE.execCommand('mceRemoveControl', false, 'content');
