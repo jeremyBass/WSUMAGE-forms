@@ -72,17 +72,20 @@ class Wsu_WebFormsCRF_Block_Form extends Wsu_WebForms_Block_Webforms {
 	}
 
 	public function isNewsletterEnabled(){
-		if (Mage::getStoreConfigFlag('advanced/modules_disable_output/Mage_Newsletter')) return false;
+		if (Mage::getStoreConfigFlag('advanced/modules_disable_output/Mage_Newsletter')){
+			return false;
+		}
 		return true;
 	}
 
 	public function getFormAction(){
 		if($this->isAjax()){
-			$secure = false;
+			/*$secure = false;
 			if(isset($_SERVER['HTTPS'])){
 				$secure = $_SERVER['HTTPS'];
-			}
-			return $this->getUrl('webformscrf/index/create',array('_secure'=> $secure));
+			}*/
+			$isSecure = Mage::app()->getStore()->isCurrentlySecure();
+			return $this->getUrl('webformscrf/index/create',array('_secure'=> $isSecure));
 		}
 		return Mage::helper('core/url')->getCurrentUrl();
 	}
