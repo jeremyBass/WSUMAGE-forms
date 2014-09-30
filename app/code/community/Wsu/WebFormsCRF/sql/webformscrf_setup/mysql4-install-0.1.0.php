@@ -7,7 +7,7 @@ $installer->run("
 ALTER TABLE  `{$this->getTable('customer/customer_group')}` ADD `webform_id` INT( 10 ) NOT NULL DEFAULT '0';
 ");
 
-$webforms_table = 'webforms';
+$webforms_table = $this->getTable('webforms/webforms');
 
 $installer->run("
 ALTER TABLE  `{$webforms_table}` ADD  `crf_account`  tinyint(1) NOT NULL DEFAULT '0';
